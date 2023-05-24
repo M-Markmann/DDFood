@@ -205,6 +205,45 @@ def behavioral_analaysis(file_name,file):
                 events_script.append((trial_start,duration,day,condition,immediate_offer,choice))
                 indifference_liste.append((entry_counter, Coin_Task, day, Counter_Decisions, Decision, immediate_offer))
 
-        return events_script, indifference_liste
+        return events_script, indifference_liste, food_chooser, entry_counter
 
-analyze
+def calculate_indifference_point_list(food_chooser,entry_counter, indifference_liste_with_all):
+    list_of_indifference_points = []
+    did_change_happened = []
+    food_chooser = [food_chooser]
+    for i in range(int(entry_counter / 5)):
+         # print((i+1)*5)
+        start = ((i + 1) * 5) - 5
+        end = ((i + 1) * 5)
+            # print(start,end)
+        indifference_point, change_happened = indifference_point_calculator(indifference_liste_with_all[start:end][:][:][:][:], start, end)
+        list_of_indifference_points.append(
+             (start, indifference_liste_with_all[start, 1], indifference_liste_with_all[start, 2], indifference_point))
+        did_change_happened.append(change_happened)
+
+    return list_of_indifference_points, did_change_happened
+
+
+
+
+def indifference_point_calculator(numbers, start, end):
+    indif = int(20)
+    if numbers[0, 4] == 1:
+        indif += -10
+    elif numbers[0, 4] == 0:
+        indif += 10
+    if numbers[1, 4] == 1:
+        indif += -5
+    elif numbers[1, 4] == 0:
+        indif += 5
+    if numbers[2, 4] == 1:
+        indif += -2.5
+    elif numbers[2, 4] == 0:
+        indif += 2.5
+    if numbers[3, 4] == 1:
+        indif += -1
+    elif numbers[3, 4] == 0:
+        indif += 1
+
+    change_happened = any(numbers[:,4])
+    return indif, change_happened

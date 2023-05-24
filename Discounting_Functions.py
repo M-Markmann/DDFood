@@ -7,7 +7,8 @@ import sklearn
 import numpy as np
 import statistics as stats
 import math
-from math import exp
+from numpy import exp
+#from math import exp
 import scipy.optimize
 from scipy.optimize import curve_fit
 import os
