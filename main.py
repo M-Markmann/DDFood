@@ -2,6 +2,8 @@ from Discounting_Functions import *
 from  plotting_results import *
 from create_behavioral_log import behavioral_analaysis, calculate_indifference_point_list
 from log_likelihood_estimation import log_likelihood_single_parameter, log_likelihood_two_parameter
+from statistics_and_plots import statistics_and_plotting
+import os
 import scipy
 
 def print_hi(name):
@@ -14,7 +16,7 @@ def print_hi(name):
         os.makedirs(results_methods_dir)
     data_path = 'C:/Users/mariu/Documents/Arbeit/DelayDiscountingFood/BehavioralDATA/'
     log_files = os.listdir(data_path)
-    maxiter = 10000000
+    maxiter = 1000000
     all_data = []
     rsquared_parameter_estimates = []
     rsquared_data = []
@@ -44,10 +46,10 @@ def print_hi(name):
         Money_indifference_list = list_of_indifference_points[
            list_of_indifference_points[:, 1] > 0.5]  # Create List for all Money Decisions
 
-        bounds_two = [(0.1, 10), (0.000001, 1)]  # beta, k
+        bounds_two = [(0.01, 10), (0.0000001, 5)]  # beta, k
         initial_guess_two = np.array([2, 0.055])  # beta, k
-        bounds_three = [(0.1, 10), (0.000001, 1), (0.01,  1.5)]  # beta, k, s
-        initial_guess_three = np.array([2, 0.055, 0.42])
+        bounds_three = [(0.01, 10), (0.0000001, 5), (0.01,  5)]  # beta, k, s
+        initial_guess_three = np.array([2, 0.055, 1])
 
         discounting_functions = { single_parameter_softmax_hyperbol:2,single_parameter_softmax_exponential:2,two_parameter_softmax_green: 3, two_parameter_softmax_mazur: 3, two_parameter_softmax_prelec: 3}
         conditions = [Food, Money]
@@ -96,6 +98,7 @@ def print_hi(name):
                                               'prelec_Money_beta', 'prelec_Money_k', 'prelec_Money_s', 'aic_Money_prelec'
                                               ])
 
+    statistics_and_plotting(all_data)
 
 
 

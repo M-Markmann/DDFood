@@ -5,7 +5,7 @@ matplotlib.use('Qt5Agg')
 import matplotlib.pyplot
 import sklearn
 import numpy as np
-import statistics as stats
+import statistics_and_plots as stats
 import math
 from numpy import exp
 #from math import exp
