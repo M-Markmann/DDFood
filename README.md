@@ -11,8 +11,8 @@ Hyperbol without scaling, Exponential without scaling, Hyperbol with scaling of 
 
 |   | Hyperbol   | Exponential|
 |---|---|---|
-| Without scaling| $` SV={Amount \over 1+k*D} `$  | $` SV=A*e^-kD `$ |
-| With scaling | $`SV={Amount \over (1+k*D)^s } `$ or $` SV={Amount \over 1+k*(D^s } `$   |   |   |   |
+| Without scaling| $` SV={Amount \over 1+k*D} `$  | $` SV=A*e^(-kD) `$ |
+| With scaling | $`SV={Amount \over (1+k*D)^s } `$ or $` SV={Amount \over 1+k*(D^s } `$   | $` SV=A*e^(-kD)^s `$  | 
 
 ## Install
 
