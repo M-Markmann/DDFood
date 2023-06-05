@@ -1,5 +1,5 @@
 from Discounting_Functions import *
-from  plotting_results import *
+
 from create_behavioral_log import behavioral_analaysis, calculate_indifference_point_list
 from log_likelihood_estimation import log_likelihood_single_parameter, log_likelihood_two_parameter
 from statistics_and_plots import statistics_and_plotting_aic, calculate_indifference_list, statistis_and_plotting_r2
@@ -46,10 +46,10 @@ def analyze_and_do_statistics():
         initial_guess_one_r2 = (0.00001)  # k
         initial_guess_tw0_r2 = [0.0055, 0.403]
         bounds_one_r2 = (0.00001, 1)  # k
-        bounds_two_r2 = ((0.00001, 0.01), (1, 1.5))  # k,s
-        bounds_two = [(0.1, 10), (0.00001, 1)]  # beta, k
+        bounds_two_r2 = ((0.00001, 0.01), (1, 3))  # k,s
+        bounds_two = [(0.1, 10), (0.00001, 5)]  # beta, k
         initial_guess_two = np.array([2, 0.055])  # beta, k
-        bounds_three = [(0.1, 10), (0.00001, 1), (0.01,  1.5)]  # beta, k, s
+        bounds_three = [(0.1, 10), (0.00001, 5), (0.01,  3)]  # beta, k, s
         initial_guess_three = np.array([2, 0.055, 0.42])
 
         discounting_functions_softmax = { single_parameter_softmax_hyperbol:2,single_parameter_softmax_exponential:2,two_parameter_softmax_green: 3, two_parameter_softmax_mazur: 3, two_parameter_softmax_prelec: 3}
@@ -148,17 +148,17 @@ def analyze_and_do_statistics():
 
     r2_data = pd.DataFrame(all_data_r2, columns=['k_food_hyperbol','r2_hyberbole_food','k_food_exponential','r2_exponential_food',
                                                  'k_food_gm','s_food_gm','r2_GM_food','k_food_mazur','s_food_mazur','r2_mazur_food','k_food_prelec','s_food_prelec','r2_prelec_food',
-                                                   'k_money_hyperbol','r2_hyberbole_money','k_money_exponential','r2_exponential_money',
-                                                 'k_money_gm','s_money_gm','r2_GM_money','k_money_mazur','s_money_mazur','r2_mazur_money','k_money_prelec','s_money_prelec','r2_prelec_money',
-                                                  ])
-    'r2_exponential_money', 'r2_hyberbole_money', 'r2_GM_money', 'r2_mazur_money', 'r2_prelec_money'
-    statistics_and_plotting_aic(all_data)
-    statistis_and_plotting_r2(r2_data)
+                                                       'k_money_hyperbol','r2_hyberbole_money','k_money_exponential','r2_exponential_money',
+                                                     'k_money_gm','s_money_gm','r2_GM_money','k_money_mazur','s_money_mazur','r2_mazur_money','k_money_prelec','s_money_prelec','r2_prelec_money',
+                                                      ])
+        'r2_exponential_money', 'r2_hyberbole_money', 'r2_GM_money', 'r2_mazur_money', 'r2_prelec_money'
+        statistics_and_plotting_aic(all_data)
+        statistis_and_plotting_r2(r2_data)
 
 
 
 
-        if __name__ == '__main__':
+            if __name__ == '__main__':
     analyze_and_do_statistics()
 
 
