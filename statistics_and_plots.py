@@ -1,3 +1,4 @@
+import matplotlib.pyplot
 import seaborn as sns
 import numpy as np
 from matplotlib.ticker import FormatStrFormatter
@@ -80,10 +81,10 @@ def statistics_and_plotting_aic(all_data):
     all_data['delta_aic_food_exponential'] = all_data['aic_Food_exponential'] - min_food
     all_data['delta_aic_food_meyer_green'] = all_data['aic_Food_meyer_green'] - min_food
     all_data['delta_aic_food_mazur'] = all_data['aic_Food_mazur'] - min_food
-    all_data['delta_aic_food_prelec'] = all_data['aic_Food_prelec'] - min_food
+    all_data['delta_aic_food_prelec'] = all_data['aic_Food_prelec']  - min_food
 
     min_money = all_data[['aic_Money_hyperbol','aic_Money_exponential','aic_Money_meyer_green','aic_Money_mazur','aic_Money_prelec']].min(axis=1)
-    all_data['delta_aic_Money_hyperbol'] =  all_data['aic_Money_hyperbol'] - min_money
+    all_data['delta_aic_Money_hyperbol'] =  all_data['aic_Money_hyperbol']- min_money
     all_data['delta_aic_Money_exponential'] = all_data['aic_Money_exponential'] - min_money
     all_data['delta_aic_Money_meyer_green'] = all_data['aic_Money_meyer_green'] -min_money
     all_data['delta_aic_Money_mazur'] = all_data['aic_Money_mazur'] - min_money
@@ -128,6 +129,9 @@ def statistics_and_plotting_aic(all_data):
     ax.patches[3].set_linewidth(5)
     ax.axhline(y=2, color='black', linestyle='--', linewidth=3)
     ax.set(ylim=(0, 11))
+    matplotlib.pyplot.hist(all_data['mazur_Food_k'])
+    matplotlib.pyplot.hist(all_data['mazur_Food_s'])
+    matplotlib.pyplot.hist(all_data['mazur_Food_beta'])
 
     return True
 
