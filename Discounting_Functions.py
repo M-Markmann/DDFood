@@ -1,7 +1,7 @@
 
 import matplotlib.cm as cm
 import matplotlib
-matplotlib.use('Qt5Agg')
+#matplotlib.use('Qt5Agg')
 import matplotlib.pyplot
 import sklearn
 import numpy as np
@@ -85,5 +85,19 @@ def two_parameter_softmax_prelec(Choosen_Reward_D, immediate_Offer, Delay, k, be
         p_choosen = (exp(prelec(Delay,k, s)/beta))/((exp(immediate_Offer/beta))+(exp(prelec(Delay,k, s)/beta)))
     if Choosen_Reward_D == 1:
         p_choosen = (exp(immediate_Offer/beta))/((exp(immediate_Offer/beta))+(exp(prelec(Delay,k, s)/beta)))
+
+    return p_choosen
+
+
+def itch(Choosen_Reward_D,immediate_Offer,Delay,intercept, bxa, bxr, bta, btr):
+
+    if Choosen_Reward_D == 0:
+        p_choosen = (intercept + bxa * (40 - immediate_Offer) + bxr * (
+                    40 - immediate_Offer / (40 + immediate_Offer / 2)) + bta * Delay + btr * Delay / (Delay / 2))+0.001
+
+    else:
+        p_choosen = (intercept + bxa * (40 - immediate_Offer) + bxr * (
+                    40 - immediate_Offer / (40 + immediate_Offer / 2)) + bta * Delay + btr * Delay / (Delay / 2))+0.001
+        p_choosen = 1-p_choosen
 
     return p_choosen
