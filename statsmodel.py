@@ -1,3 +1,0 @@
-import statsmodels
-
-statsmodels.genmod.generalized_linear_model.GLM.fit
