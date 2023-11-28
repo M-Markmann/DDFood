@@ -1,5 +1,5 @@
 import random
-from Discounting_Functions import *
+from Maximum_Likelihood.Discounting_Functions import *
 
 def simulate_data():
     random.random()

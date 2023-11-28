@@ -97,6 +97,7 @@ def testing_exponential(chains,samples,n_subj,A,B,DB,R,DA, cores, tune, i, dict,
         softmax_scaled =pm.Deterministic('softmax_scaled', 0.001 * 0.5 + ((1 - 0.001) * p_delayed))
         h = pm.Bernoulli('h', p=softmax_scaled, observed=R, dims=['Trial_NR','Subject']) #was logit_p #, shape=(n_subj,n_trials) , shape=(n_trials,n_subj)
         # Sample
+
         #log_P = normal_lcdf(0, 1, (V_B - V_A) / alpha[:])  # log(p)
         #log_1m_P = pm.math.log1mexp(-log_P)  # log(1-p)
         #logit_P = pm.Deterministic('logit_P', log_P - log_1m_P)
@@ -106,6 +107,7 @@ def testing_exponential(chains,samples,n_subj,A,B,DB,R,DA, cores, tune, i, dict,
                                          return_inferencedata = True, discard_tuned_samples=False, idata_kwargs={"log_likelihood": True, }) #,  ,return_inferencedata=True , nuts={'target_accept':0.9}, step=pm.Metropolis(), , init='adapt_diag'jitter_max_retries=0, idata_kwargs={"log_likelihood": True, }, , idata_kwargs={"log_likelihood": True, }
 
         #
+
         parameters_k = pd.DataFrame(az.hdi(Discounting_trace_exponential, var_names=["k"], hdi_prob=0.95).k) #.to_array()
         #print(az.hdi(Discounting_trace_exponential, var_names=["k"], hdi_prob=0.95).k.to_array())  # .to_array() values " , "alpha"
         #parameters_alpha = pd.DataFrame(az.hdi(Discounting_trace_exponential, var_names=["alpha"], hdi_prob=0.95).alpha)
